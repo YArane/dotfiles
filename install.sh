@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+
+backup() {
+	echo "creating backup of all dotfiles in home directory in $DOTFILES_DIR/backup"
+	if [ ! -d backup ]; then
+		mkdir backup
+	fi
+	# backup all dotfiles in home directory - dont print 'ommiting directories'
+	cp ~/.* backup/ 2>/dev/null
+	echo "backup complete."
+}
+
+create_links() {
+	echo "creating symbolic links to home directory..."
+	ln -svf $DOTFILES_DIR/.vimrc ~
+	ln -svf $DOTFILES_DIR/.tmux.conf ~
+	ln -svf $DOTFILES_DIR/.bashrc ~
+	ln -svf $DOTFILES_DIR/.bash_prompt ~
+	ln -svf $DOTFILES_DIR/.env ~
+	ln -svf $DOTFILES_DIR/.aliases ~
+	ln -svf $DOTFILES_DIR/.functions ~
+	ln -svf $DOTFILES_DIR/.inputrc ~
+}
+
+create_vim_dirs() {
+	if [ ! -d ~/.vim ]; then
+		mkdir ~/.vim
+	fi
+	if [ ! -d ~/.vim/backups ]; then
+		mkdir ~/.vim/backups
+	fi
+	if [ ! -d ~/.vim/undo ]; then
+		mkdir ~/.vim/undo
+	fi
+	if [ ! -d ~/.vim/swaps ]; then
+		mkdir ~/.vim/swaps
+	fi
+}
+
+install() {
+	echo "sourcing .bashrc"
+	source ~/.bashrc
+}
+
+backup
+create_links
+create_vim_dirs
+install
+echo "dotfiles installed successfully"
