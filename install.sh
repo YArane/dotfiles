@@ -13,7 +13,7 @@ backup() {
 }
 
 create_links() {
-	echo "creating symbolic links to home directory..."
+	echo "creating symbolic links to home directory.."
 	ln -svf $DOTFILES_DIR/.vimrc ~
 	ln -svf $DOTFILES_DIR/.tmux.conf ~
 	ln -svf $DOTFILES_DIR/.bashrc ~
@@ -39,6 +39,14 @@ create_vim_dirs() {
 	fi
 }
 
+install_vundle() {
+	echo "installing vundle package manager for vim.."
+	if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+		git clone https://github.com/VundleVime/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	fi
+	vim +PluginInstall +qall
+}
+
 install() {
 	echo "sourcing .bashrc"
 	source ~/.bashrc
@@ -47,5 +55,6 @@ install() {
 backup
 create_links
 create_vim_dirs
+install_vundle
 install
 echo "dotfiles installed successfully"
