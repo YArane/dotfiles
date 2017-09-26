@@ -14,7 +14,12 @@ backup() {
 
 create_links() {
 	echo "creating symbolic links to home directory.."
+
 	ln -svf $DOTFILES_DIR/.vimrc ~
+	ln -svf $DOTFILES_DIR/.vim/.ycm_extra_conf.py ~/.vim
+	ln -svf $DOTFILES_DIR/.vim/nerdtree.vim ~/.vim
+	ln -svf $DOTFILES_DIR/.vim/plugins.vim ~/.vim
+
 	ln -svf $DOTFILES_DIR/.tmux.conf ~
 	ln -svf $DOTFILES_DIR/.bashrc ~
 	ln -svf $DOTFILES_DIR/.bash_prompt ~
@@ -53,8 +58,8 @@ install() {
 }
 
 backup
-create_links
 create_vim_dirs
+create_links
 install_vundle
 install
 echo "dotfiles installed successfully"
