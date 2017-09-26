@@ -8,10 +8,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'tikhomirov/vim-glsl'
+Plugin 'tpope/vim-obsession' " :Obsess | vim -S
+Plugin 'wesQ3/vim-windowswap' " <leader>ww to swap
+Plugin 'scrooloose/nerdtree'
+
 "Plugin 'sjl/gundo.vim'
 "Plugin 'AndrewRadev/id3.vim'
 "Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/nerdtree'
 "Plugin 'majutsushi/tagbar'
 "Plugin 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 "Plugin 'ctrlpvim/ctrlp.vim'
@@ -85,7 +89,16 @@ nnoremap <leader>n :NERDTree<CR>
 " Tagbar
 nnoremap <leader>t :TagbarToggle<CR>
 
-nmap <leader>l :call ToggleNumber()<CR>
+nmap <leader>; :call ToggleNumber()<CR>
+" save file as root
+noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+" -------------{~~ Panes ~~}-------------- "
+nmap <leader>h :leftabove vnew<CR>
+nmap <leader>l :rightbelow vnew<CR>
+nmap <leader>k :leftabove new<CR>
+nmap <leader>j :rightbelow new<CR>
+
 
 " ------------{~~ Folding ~~}------------- "
 set foldenable " enable folding
