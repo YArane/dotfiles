@@ -32,7 +32,7 @@ au VimEnter * :wincmd w
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
    
 " sets the local window working directory to the current file's directory
-autocmd BufEnter * lcd %:p:h
+"autocmd BufEnter * lcd %:p:h
 
 " Show/Hide NERDTree
 :nmap <expr> <leader>n (winnr("$") == 1) ? ':NERDTreeFind<CR>' : ':NERDTreeToggle<CR>'

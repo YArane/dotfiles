@@ -29,7 +29,7 @@ nnoremap gV `[v`]
 " goto function definition in new tab
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " goto function definiteion in vertical split
-map <C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> 
+"map <C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR> 
 
 " -------{~~ Leader Shortcuts (,)  ~~}------- "
 let mapleader=","
@@ -101,6 +101,9 @@ augroup project
 	autocmd!
 	autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
 augroup END
+
+" -----------{~~ Silver Searcher ~~}----------- "
+source ~/.vim/ag.vim
 
 " -------------{~~ Vundle ~~}------------- "
 source ~/.vim/plugins.vim
