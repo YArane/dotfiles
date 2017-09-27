@@ -82,3 +82,6 @@ source ~/.vim/plugins.vim
 
 " ---------------{~~ Nerd Tree ~~}---------------- "
 source ~/.vim/nerdtree.vim
+
+" -----------------{~~ cScope ~~}----------------- "
+source ~/.vim/cscope.vim
