@@ -19,6 +19,8 @@ create_links() {
 	ln -svf $DOTFILES_DIR/.vim/.ycm_extra_conf.py ~/.vim
 	ln -svf $DOTFILES_DIR/.vim/nerdtree.vim ~/.vim
 	ln -svf $DOTFILES_DIR/.vim/plugins.vim ~/.vim
+	ln -svf $DOTFILES_DIR/.vim/mappings.vim ~/.vim
+	ln -svf $DOTFILES_DIR/.vim/ag.vim ~/.vim
 
 	ln -svf $DOTFILES_DIR/.tmux.conf ~
 	ln -svf $DOTFILES_DIR/.bashrc ~
