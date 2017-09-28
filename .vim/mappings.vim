@@ -10,7 +10,7 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 nmap <leader>c /[A-Z]<CR>:nohlsearch<CR>
 
 " Tagbar
-nnoremap <leader>t :TagbarToggle<CR>
+nnoremap <leader>t :TagbarOpen fj<CR>
 
 " save file as root
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
