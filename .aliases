@@ -17,6 +17,7 @@ alias three="xrandr --output HDMI2 --auto --pos 0x0 --output DVI-I-1 --auto --po
 
 #vi
 alias vi='vim'
+alias fv='vim $(fzf)'
 
 #mongodb
 alias mongo_start='sudo service mongod start'
