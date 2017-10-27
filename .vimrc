@@ -13,11 +13,12 @@ set title        " show the filename in window titlebar
 set laststatus=2 " always show status line
 set noerrorbells " disable error bells
 set scrolloff=3  " start scrolling before the horizontal window border
+set undofile	 " persist undo history after file write
 
 " ----------------{~~ Indents ~~}----------------- "
-set tabstop=4    " tabs are as wide as four spaces
-set softtabstop=4
-set shiftwidth=4
+set tabstop=3    " tabs are as wide as four spaces
+set softtabstop=3
+set shiftwidth=3
 set noexpandtab
 
 " -----------------{~~ Panes ~~}------------------ "
@@ -52,6 +53,7 @@ function! ToggleNumber()
 	set number
     endif
 endfunc
+:call ToggleNumber()
 nmap <leader>; :call ToggleNumber()<CR>
 
 " ----------------{~~ Backups ~~}----------------- "

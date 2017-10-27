@@ -7,6 +7,7 @@ call vundle#begin()
 " core plugins
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-obsession' " :Obsess | vim -S
+Plugin 'tpope/vim-unimpaired'
 Plugin 'wesQ3/vim-windowswap' " <leader>ww to swap
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
