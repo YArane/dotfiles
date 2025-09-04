@@ -1,0 +1,20 @@
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+
+[delta]
+  navigate = true
+  light = false
+  theme = Github
+  side-by-side = true
+
+[merge]
+  conflictstlye = diff3
+
+[diff]
+  colorMoved = default
+[user]
+	email = yarden@mapleanalytics.ca
+	name = Yarden Arane

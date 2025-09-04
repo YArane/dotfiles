@@ -2,34 +2,26 @@
 
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-backup() {
-	echo "creating backup of all dotfiles in home directory in $DOTFILES_DIR/backup"
-	if [ ! -d backup ]; then
-		mkdir backup
+install_packages() {
+	echo "installing dotfiles packages with GNU Stow..."
+	
+	# Check if stow is installed
+	if ! command -v stow &> /dev/null; then
+		echo "GNU Stow is not installed. Please install it first:"
+		echo "  macOS: brew install stow"
+		echo "  Ubuntu/Debian: sudo apt install stow"
+		echo "  CentOS/RHEL: sudo yum install stow"
+		exit 1
 	fi
-	# backup all dotfiles in home directory - dont print 'ommiting directories'
-	cp ~/.* backup/ 2>/dev/null
-	echo "backup complete."
-}
-
-create_links() {
-	echo "creating symbolic links to home directory.."
-
-	ln -svf $DOTFILES_DIR/.vimrc ~
-	ln -svf $DOTFILES_DIR/.vim/.ycm_extra_conf.py ~/.vim
-	ln -svf $DOTFILES_DIR/.vim/nerdtree.vim ~/.vim
-	ln -svf $DOTFILES_DIR/.vim/plugins.vim ~/.vim
-	ln -svf $DOTFILES_DIR/.vim/mappings.vim ~/.vim
-	ln -svf $DOTFILES_DIR/.vim/ag.vim ~/.vim
-	ln -svf $DOTFILES_DIR/.vim/cscope.vim ~/.vim
-
-	ln -svf $DOTFILES_DIR/.tmux.conf ~
-	ln -svf $DOTFILES_DIR/.bashrc ~
-	ln -svf $DOTFILES_DIR/.bash_prompt ~
-	ln -svf $DOTFILES_DIR/.env ~
-	ln -svf $DOTFILES_DIR/.aliases ~
-	ln -svf $DOTFILES_DIR/.functions ~
-	ln -svf $DOTFILES_DIR/.inputrc ~
+	
+	# Install each package
+	cd "$DOTFILES_DIR"
+	for package in bash vim tmux git; do
+		if [ -d "$package" ]; then
+			echo "Installing $package package..."
+			stow "$package"
+		fi
+	done
 }
 
 create_vim_dirs() {
@@ -55,14 +47,13 @@ install_vundle() {
 	vim +PluginInstall +qall
 }
 
-install() {
+finalize() {
 	echo "sourcing .bashrc"
 	source ~/.bashrc
 }
 
-backup
 create_vim_dirs
-create_links
+install_packages
 install_vundle
-install
-echo "dotfiles installed successfully"
+finalize
+echo "dotfiles installed successfully with GNU Stow"

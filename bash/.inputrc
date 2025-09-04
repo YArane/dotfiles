@@ -1,0 +1,3 @@
+$if Psql
+  "\C-r":"\\i ~/.psql-fzf\n"
+$endif
