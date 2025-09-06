@@ -8,6 +8,10 @@ TERM = "xterm-256color"
 [window]
 dimensions = { columns = 160, lines = 48 }
 
+[general]
+import = ["themes\\gruvbox_dark.toml"]
+working_directory = '\\wsl$\Ubuntu\home\yarden'
+
 [scrolling]
 history = 100000
 
@@ -23,6 +27,10 @@ bold = { family = "FiraCode Nerd Font", style = "Bold" }
 italic = { family = "FiraCode Nerd Font", style = "Italic" }
 size = 11.0
 
-[general]
-import = ["themes\\gruvbox_dark.toml"]
-working_directory = '\\wsl$\Ubuntu\home\yarden'
+[keyboard]
+bindings = [
+  { key = "Left", mods = "Control", chars = "\u001b[H" }, # Ctrl+Left -> Home
+  { key = "Right", mods = "Control", chars = "\u0005" },  # Ctrl+Right -> End
+  { key = "Left", mods = "Alt", chars = "\u001b[1;5D" },  # Alt+Left -> Ctrl+Left (word back)
+  { key = "Right", mods = "Alt", chars = "\u001b[1;5C" }, # Alt+Right -> Ctrl+Right (word forward)
+]

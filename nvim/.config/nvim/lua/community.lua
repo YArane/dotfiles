@@ -7,8 +7,15 @@
 ---@type LazySpec
 return {
 	"AstroNvim/astrocommunity",
-	{ import = "astrocommunity.pack.lua" },
 	{ import = "astrocommunity.pack.toml" },
-	--{ import = "astrocommunity.icon.mini-icons" }
-	-- import/override with your plugins folder
+	{ import = "astrocommunity.pack.markdown" },
+	{ import = "astrocommunity.pack.yaml" },
+
+	{ import = "astrocommunity.pack.docker" },
+	{ import = "astrocommunity.pack.helm" },
+
+	{ import = "astrocommunity.pack.bash" },
+	{ import = "astrocommunity.pack.lua" }, -- requires unzip
+	{ import = "astrocommunity.pack.java" },
+	--{ import = "astrocommunity.pack.sql" }, -- requires go
 }

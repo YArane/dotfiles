@@ -7,9 +7,19 @@ ZSH_THEME="pygmalion"
 
 # plugins
 plugins=(
+  docker
+  docker-compose
   git
+  helm
+  kubectl
+  minikube
+  mvn
+  ssh
   zsh-autosuggestions
 )
+
+# Skip all plugin aliases
+zstyle ':omz:plugins:*' aliases no
 
 source $ZSH/oh-my-zsh.sh
 
@@ -21,7 +31,6 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='nvim'
 # fi
-
 
 # history
 HISTSIZE=100000
@@ -41,9 +50,12 @@ alias la='eza -la --icons --octal-permissions --group-directories-first --total-
 alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons --total-size'
 alias l='eza -1 --color=always --group-directories-first --icons'
 lt() {
-    local level=${1:-2}
-    eza --tree --level="$level" --color=always --group-directories-first --icons
+  local level=${1:-2}
+  eza --tree --level="$level" --color=always --group-directories-first --icons
 }
+
+## bat
+alias cat='batcat -pp'
 
 set -o ignoreeof # prevent Ctrl-d from exiting shell
 
