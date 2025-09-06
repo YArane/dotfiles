@@ -11,6 +11,12 @@ dimensions = { columns = 160, lines = 48 }
 [scrolling]
 history = 100000
 
+[selection]
+save_to_clipboard = true
+
+[mouse]
+bindings = [{ mouse = "Right", action = "Paste" }]
+
 [font]
 normal = { family = "FiraCode Nerd Font", style = "Regular" }
 bold = { family = "FiraCode Nerd Font", style = "Bold" }
