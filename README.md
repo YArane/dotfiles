@@ -1,6 +1,6 @@
-# Yarden's Dotfiles
+# Dotfiles
 
-Aimed at having a consistent development environment on both MacOS and Windows (WSL).
+Dotfiles for providing a consistent development environment across macOS and Windows (WSL)
 
 ## Components
 
@@ -78,6 +78,28 @@ $(brew --prefix)/opt/fzf/install
 # Set zsh as default shell
 chsh -s /opt/homebrew/bin/zsh
 ```
+
+## Automated Setup (WSL Ubuntu)
+
+For Windows WSL Ubuntu users (amd64 architecture), you can use the automated setup script:
+
+```bash
+git clone https://github.com/YArane/dotfiles.git
+cd dotfiles
+chmod +x setup.sh
+./setup.sh
+```
+
+The `setup.sh` script will:
+- Update system packages
+- Install all required dependencies
+- Download and install the latest versions of Neovim and git-delta
+- Set up Oh My Zsh with autosuggestions and FZF integration
+- Backup any existing conflicting configuration files
+- Use GNU Stow to symlink all dotfile configurations
+- Set zsh as your default shell
+
+After running the script, restart your terminal or run `exec zsh` to start using your new setup.
 
 ### Installation
 
