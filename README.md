@@ -14,6 +14,19 @@ Aimed at having a consistent development environment on both MacOS and Windows (
 
 ## Dependencies
 
+    alacritty
+    tmux
+    nvim
+    zsh
+    ohmyzsh
+    zsh-autosuggestions
+    fzf
+    ripgrep
+    delta
+    unzip
+    eza
+    bat
+
 For automated dependency installation:
 
 **Debian/Ubuntu:**

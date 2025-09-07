@@ -11,10 +11,10 @@
   side-by-side = true
 
 [merge]
-  conflictstlye = diff3
+  conflictstyle = diff3
 
 [diff]
   colorMoved = default
 [user]
-	email = yarden@mapleanalytics.ca
-	name = Yarden Arane
+	email =
+	name =
