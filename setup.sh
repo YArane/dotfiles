@@ -10,7 +10,7 @@ sudo apt update && sudo apt upgrade -y
 
 # Install core dependencies
 echo "Installing core dependencies..."
-sudo apt install -y stow zsh tmux eza bat ripgrep unzip curl wget
+sudo apt install -y stow zsh tmux bat ripgrep unzip curl wget
 
 # Install Oh My Zsh
 echo "Installing Oh My Zsh..."
@@ -26,6 +26,19 @@ if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 else
     echo "zsh-autosuggestions already installed, skipping..."
+fi
+
+# Install eza
+echo "Installing eza..."
+if ! command -v eza &> /dev/null; then
+    EZA_VERSION=$(curl -s https://api.github.com/repos/eza-community/eza/releases/latest | grep -Po '"tag_name": "\K[^"]*')
+    echo "Installing eza ${EZA_VERSION}..."
+    wget -q "https://github.com/eza-community/eza/releases/download/${EZA_VERSION}/eza_x86_64-unknown-linux-gnu.tar.gz"
+    tar -xzf "eza_x86_64-unknown-linux-gnu.tar.gz"
+    sudo mv eza /usr/local/bin/
+    rm "eza_x86_64-unknown-linux-gnu.tar.gz"
+else
+    echo "eza already installed, skipping..."
 fi
 
 # Install FZF
