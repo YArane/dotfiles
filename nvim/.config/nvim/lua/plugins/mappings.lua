@@ -35,8 +35,8 @@ return {
 				},
 
 				-- vimwiki
-				["<leader>w"] = { desc = "󰏫 Vimwiki" },
-				["<leader>ww"] = { desc = "Vimwiki Index" },
+				["<leader>w"] = { false, desc = "󰏫 Vimwiki" },
+				["<leader>ww"] = { "<cmd>VimwikiIndex<cr>", desc = "VimWiki Index" },
 
 				-- Neotree
 				["<A-1>"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" },
