@@ -66,4 +66,4 @@ stow tmux -t ~
 - **Click windows** - Switch between windows  
 - **Drag borders** - Resize panes
 - **Scroll wheel** - Scroll through history
-- **Shift + Right-click paste** - No context menu
+- **Right-click paste** - No context menu

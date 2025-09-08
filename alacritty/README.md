@@ -50,7 +50,7 @@ cp -r themes $env:APPDATA\Roaming\alacritty\
 | Action              | Binding |
 |---------------------|---------|
 | Select text         | Auto-copy to clipboard |
-| Shift + Right-click | Paste |
+| Right-click         | Paste                |
 | Middle-click        | Paste (if supported) |
 
 ## Theme Configuration
