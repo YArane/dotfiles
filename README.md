@@ -26,6 +26,7 @@ Dotfiles for providing a consistent development environment across macOS and Win
     unzip
     eza
     bat
+    carapace-bin
 
 For automated dependency installation:
 
@@ -46,6 +47,13 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 # Install FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
 
+# Install carapace-bin
+CARAPACE_VERSION=$(curl -s https://api.github.com/repos/carapace-sh/carapace-bin/releases/latest | grep -Po '"tag_name": "\K[^"]*')
+wget "https://github.com/carapace-sh/carapace-bin/releases/download/${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
+tar -xzf "carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
+sudo mv carapace /usr/local/bin/
+rm "carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
+
 # Install git-delta
 wget https://github.com/dandavison/delta/releases/download/0.18.2/git-delta_0.18.2_amd64.deb
 sudo dpkg -i git-delta_0.18.2_amd64.deb
@@ -63,7 +71,7 @@ chsh -s $(which zsh)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install dependencies
-brew install stow zsh tmux neovim fzf eza bat ripgrep git-delta
+brew install stow zsh tmux neovim fzf eza bat ripgrep git-delta carapace
 brew install --cask alacritty hammerspoon
 
 # Install Oh My Zsh

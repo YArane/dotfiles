@@ -48,6 +48,19 @@ sudo apt install eza bat ripgrep
 brew install eza bat ripgrep
 ```
 
+### Carapace Shell Completions
+**Debian/Ubuntu:**
+```bash
+CARAPACE_VERSION=$(curl -s https://api.github.com/repos/carapace-sh/carapace-bin/releases/latest | grep -Po '"tag_name": "\K[^"]*')
+wget "https://github.com/carapace-sh/carapace-bin/releases/download/${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
+tar -xzf "carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
+sudo mv carapace /usr/local/bin/
+```
+**macOS:**
+```bash
+brew install carapace
+```
+
 ## Installation
 
 ```bash

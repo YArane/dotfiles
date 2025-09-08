@@ -50,6 +50,19 @@ else
     echo "FZF already installed, skipping..."
 fi
 
+# Install carapace-bin
+echo "Installing carapace-bin..."
+if ! command -v carapace &> /dev/null; then
+    CARAPACE_VERSION=$(curl -s https://api.github.com/repos/carapace-sh/carapace-bin/releases/latest | grep -Po '"tag_name": "\K[^"]*')
+    echo "Installing carapace-bin ${CARAPACE_VERSION}..."
+    wget -q "https://github.com/carapace-sh/carapace-bin/releases/download/${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
+    tar -xzf "carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
+    sudo mv carapace /usr/local/bin/
+    rm "carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
+else
+    echo "carapace-bin already installed, skipping..."
+fi
+
 # Install git-delta
 echo "Installing git-delta..."
 if ! command -v delta &> /dev/null; then
