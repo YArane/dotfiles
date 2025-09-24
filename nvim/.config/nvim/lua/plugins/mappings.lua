@@ -1,11 +1,16 @@
 return {
 	"AstroNvim/astrocore",
 	opts = {
+		conceallevel = 2,
 		mappings = {
 			n = {
 				-- diable default bindings
 				["<C-q>"] = false,
 				["<C-s>"] = false,
+				["<leader>xl"] = false,
+				["<leader>xq"] = false,
+
+				["<leader>x"] = { "<cmd>bd<cr>", desc = "buffer delete" },
 
 				-- common typo
 				["q:"] = ":",
@@ -37,6 +42,8 @@ return {
 				-- vimwiki
 				["<leader>w"] = { false, desc = "󰏫 Vimwiki" },
 				["<leader>ww"] = { "<cmd>VimwikiIndex<cr>", desc = "VimWiki Index" },
+
+				["<BS>"] = { "<C-o>", desc = "Go back in jumplist" },
 
 				-- Neotree
 				["<A-1>"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" },

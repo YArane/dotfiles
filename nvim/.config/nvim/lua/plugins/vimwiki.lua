@@ -2,6 +2,7 @@ return {
   "vimwiki/vimwiki",
   event = "VeryLazy",
   keys = {
+    { "<leader>wc", false }, -- don't need colors, use calendar instead
     { "<leader>ww", "<cmd>VimwikiIndex<cr>",      desc = "VimWiki Index" },
     { "<leader>wt", "<cmd>VimwikiTabIndex<cr>",   desc = "VimWiki Tab Index" },
     { "<leader>wd", "<cmd>VimwikiDiaryIndex<cr>", desc = "VimWiki Diary" },
