@@ -35,11 +35,11 @@ alias vi="nvim"
 
 ## ls -> eza
 alias ls='eza --color=always --group-directories-first --icons'
-alias ll='eza -la --icons --no-permissions --group-directories-first --total-size'
+alias ll='eza -la --icons --git --no-permissions --group-directories-first'
 alias llm='eza -lb --header --sort=modified --color=always --icons'
-alias lls='eza -lb --header --sort=size --reverse --color=always --icons --total-size'
+alias lls='eza -lb --header --sort=size --reverse --color=always --icons'
 alias la='eza -la --icons --octal-permissions --group-directories-first'
-alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --color-scale --color=always --group-directories-first --icons --total-size'
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons'
 alias l='eza -1 --color=always --group-directories-first --icons'
 lt() {
   local level=${1:-2}
@@ -47,7 +47,7 @@ lt() {
 }
 
 ## bat
-alias cat='batcat -pp'
+alias cat='bat -pp'
 
 set -o ignoreeof # prevent Ctrl-d from exiting shell
 

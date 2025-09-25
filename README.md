@@ -22,6 +22,9 @@ Dotfiles for providing a consistent development environment across macOS and Win
     zsh-autosuggestions
     fzf
     ripgrep
+    sesh
+    fd
+    zoxide
     delta
     unzip
     eza
@@ -36,7 +39,7 @@ For automated dependency installation:
 sudo apt update && sudo apt upgrade -y
 
 # Install core dependencies
-sudo apt install -y stow zsh tmux alacritty eza bat ripgrep unzip git
+sudo apt install -y stow zsh tmux alacritty eza bat ripgrep unzip git fd-find zoxide
 
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -71,7 +74,7 @@ chsh -s $(which zsh)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install dependencies
-brew install stow zsh tmux neovim fzf eza bat ripgrep git-delta carapace
+brew install stow zsh tmux neovim fzf eza bat ripgrep git-delta carapace fd zoxide sesh
 brew install --cask alacritty hammerspoon
 
 # Install Oh My Zsh

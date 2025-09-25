@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e  # Exit on any error
+set -e # Exit on any error
 
 echo "Starting development environment setup..."
 
@@ -10,7 +10,7 @@ sudo apt update && sudo apt upgrade -y
 
 # Install core dependencies
 echo "Installing core dependencies..."
-sudo apt install -y stow zsh tmux bat ripgrep unzip curl wget
+sudo apt install -y stow zsh tmux bat ripgrep unzip curl wget fd-find zoxide
 
 # Install Oh My Zsh
 echo "Installing Oh My Zsh..."
@@ -30,7 +30,7 @@ fi
 
 # Install eza
 echo "Installing eza..."
-if ! command -v eza &> /dev/null; then
+if ! command -v eza &>/dev/null; then
     EZA_VERSION=$(curl -s https://api.github.com/repos/eza-community/eza/releases/latest | grep -Po '"tag_name": "\K[^"]*')
     echo "Installing eza ${EZA_VERSION}..."
     wget -q "https://github.com/eza-community/eza/releases/download/${EZA_VERSION}/eza_x86_64-unknown-linux-gnu.tar.gz"
@@ -52,7 +52,7 @@ fi
 
 # Install carapace-bin
 echo "Installing carapace-bin..."
-if ! command -v carapace &> /dev/null; then
+if ! command -v carapace &>/dev/null; then
     CARAPACE_VERSION=$(curl -s https://api.github.com/repos/carapace-sh/carapace-bin/releases/latest | grep -Po '"tag_name": "\K[^"]*')
     echo "Installing carapace-bin ${CARAPACE_VERSION}..."
     wget -q "https://github.com/carapace-sh/carapace-bin/releases/download/${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
@@ -65,7 +65,7 @@ fi
 
 # Install git-delta
 echo "Installing git-delta..."
-if ! command -v delta &> /dev/null; then
+if ! command -v delta &>/dev/null; then
     DELTA_VERSION=$(curl -s https://api.github.com/repos/dandavison/delta/releases/latest | grep -Po '"tag_name": "\K[^"]*')
     echo "Installing git-delta ${DELTA_VERSION}..."
     wget -q "https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/git-delta_${DELTA_VERSION}_amd64.deb"
@@ -77,7 +77,7 @@ fi
 
 # Install Neovim
 echo "Installing Neovim..."
-if ! command -v nvim &> /dev/null; then
+if ! command -v nvim &>/dev/null; then
     echo "Downloading latest Neovim release..."
     NVIM_VERSION=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | grep -Po '"tag_name": "\K[^"]*')
     wget -q "https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux-x86_64.tar.gz"
@@ -89,43 +89,63 @@ else
     echo "Neovim already installed, skipping..."
 fi
 
+# Install Sesh
+echo "Installing sesh..."
+if ! command -v sesh &>/dev/null; then
+    echo "Downloading latest sesh release..."
+    SESH_VERSION=$(curl -s https://api.github.com/repos/joshmedeski/sesh/releases/latest | grep -Po '"tag_name": "\K[^"]*')
+    wget -q "https://github.com/joshmedeski/sesh/releases/download/${SESH_VERSION}/sesh_Linux_x86_64.tar.gz"
+    tar -xzf sesh_Linux_x86_64.tar.gz
+    sudo mv sesh /usr/local/bin/
+    sudo chmod +x /usr/local/bin/sesh
+    rm sesh_Linux_x86_64.tar.gz
+    echo "sesh ${SESH_VERSION} installed successfully"
+else
+    echo "sesh already installed, skipping..."
+fi
+
 # Function to backup and remove conflicting files
 backup_and_remove_conflicts() {
     local component=$1
     local backup_dir="$HOME/.dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
-    
+
     echo "Checking for conflicts with $component..."
-    
+
     # Get stow dry-run output
     local stow_output=$(stow -n $component -t ~ 2>&1 || true)
-    
+
     # Check if there are any conflicts
     if echo "$stow_output" | grep -q "existing target is"; then
         echo "Conflicts found for $component, backing up existing files..."
         mkdir -p "$backup_dir"
         echo "Created backup directory: $backup_dir"
-        
+
         # Handle common conflicting files based on component
         case $component in
-            "git")
-                [ -f "$HOME/.gitconfig" ] && mv "$HOME/.gitconfig" "$backup_dir/" && echo "Backed up .gitconfig"
-                [ -f "$HOME/.gitignore_global" ] && mv "$HOME/.gitignore_global" "$backup_dir/" && echo "Backed up .gitignore_global"
-                ;;
-            "nvim")
-                if [ -d "$HOME/.config/nvim" ] && [ ! -L "$HOME/.config/nvim" ]; then
-                    mv "$HOME/.config/nvim" "$backup_dir/nvim_config" && echo "Backed up ~/.config/nvim"
-                fi
-                ;;
-            "tmux")
-                [ -f "$HOME/.tmux.conf" ] && mv "$HOME/.tmux.conf" "$backup_dir/" && echo "Backed up .tmux.conf"
-                ;;
-            "zsh")
-                [ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$backup_dir/" && echo "Backed up .zshrc"
-                [ -f "$HOME/.zshenv" ] && [ ! -L "$HOME/.zshenv" ] && mv "$HOME/.zshenv" "$backup_dir/" && echo "Backed up .zshenv"
-                [ -f "$HOME/.zprofile" ] && [ ! -L "$HOME/.zprofile" ] && mv "$HOME/.zprofile" "$backup_dir/" && echo "Backed up .zprofile"
-                ;;
+        "git")
+            [ -f "$HOME/.gitconfig" ] && mv "$HOME/.gitconfig" "$backup_dir/" && echo "Backed up .gitconfig"
+            [ -f "$HOME/.gitignore_global" ] && mv "$HOME/.gitignore_global" "$backup_dir/" && echo "Backed up .gitignore_global"
+            ;;
+        "nvim")
+            if [ -d "$HOME/.config/nvim" ] && [ ! -L "$HOME/.config/nvim" ]; then
+                mv "$HOME/.config/nvim" "$backup_dir/nvim_config" && echo "Backed up ~/.config/nvim"
+            fi
+            ;;
+        "tmux")
+            [ -f "$HOME/.tmux.conf" ] && mv "$HOME/.tmux.conf" "$backup_dir/" && echo "Backed up .tmux.conf"
+            ;;
+        "zsh")
+            [ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$backup_dir/" && echo "Backed up .zshrc"
+            [ -f "$HOME/.zshenv" ] && [ ! -L "$HOME/.zshenv" ] && mv "$HOME/.zshenv" "$backup_dir/" && echo "Backed up .zshenv"
+            [ -f "$HOME/.zprofile" ] && [ ! -L "$HOME/.zprofile" ] && mv "$HOME/.zprofile" "$backup_dir/" && echo "Backed up .zprofile"
+            ;;
+        "sesh")
+            if [ -d "$HOME/.config/sesh" ] && [ ! -L "$HOME/.config/sesh" ]; then
+                mv "$HOME/.config/sesh" "$backup_dir/sesh_config" && echo "Backed up ~/.config/sesh"
+            fi
+            ;;
         esac
-        
+
         echo "Conflicting files backed up to: $backup_dir"
     else
         echo "No conflicts found for $component"
@@ -134,8 +154,8 @@ backup_and_remove_conflicts() {
 
 # Stow dotfiles (assuming you're in the dotfiles directory)
 echo "Stowing dotfiles..."
-if [ -d "git" ] && [ -d "nvim" ] && [ -d "tmux" ] && [ -d "zsh" ]; then
-    for component in git nvim tmux zsh; do 
+if [ -d "git" ] && [ -d "nvim" ] && [ -d "tmux" ] && [ -d "zsh" ] && [ -d "sesh" ]; then
+    for component in git nvim tmux zsh sesh; do
         echo "Processing $component..."
         backup_and_remove_conflicts $component
         echo "Stowing $component..."

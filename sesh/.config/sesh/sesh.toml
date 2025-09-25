@@ -1,0 +1,53 @@
+[[session]]
+name = "tmux"
+path = "~/workspace/dotfiles/tmux"
+startup_command = "nvim .tmux.conf"
+preview_command = "bat --language=bash --style=snip --color=always ~/workspace/dotfiles/tmux/.tmux.conf"
+
+[[session]]
+name = "zshrc"
+path = "~/workspace/dotfiles/zsh"
+startup_command = "nvim .zshrc"
+preview_command = "bat --language=bash --style=snip --color=always ~/workspace/dotfiles/zsh/.zshrc"
+
+[[session]]
+name = "sesh"
+path = "~/workspace/dotfiles/sesh"
+startup_command = "nvim .config/sesh/sesh.toml"
+preview_command = "bat --language=bash --style=snip --color=always ~/workspace/dotfiles/sesh/.config/sesh/sesh.toml"
+
+[[session]]
+name = "astronvim"
+path = "~/workspace/dotfiles/nvim/.config/nvim/"
+startup_command = "nvim +'lua Snacks.picker.files({ dirs = { vim.fn.stdpath \"config\"}})'"
+preview_command = "eza --tree --level=3 --all --git --icons --color=always {}"
+
+[[session]]
+name = "dotfiles"
+path = "~/workspace/dotfiles"
+startup_command = "nvim +'lua Snacks.picker.smart({ filter = { cwd = true } })'"
+preview_command = "eza --tree --level=3 --all --git --icons --color=always {}"
+
+[[session]]
+name = "vimwiki"
+path = "~/vimwiki"
+startup_command = "nvim +'lua Snacks.picker.smart({ filter = { cwd = true } })'"
+preview_command = "eza --all --git --icons --color=always {}"
+
+[[session]]
+name = "obsidian"
+path = "~/obsidian-vault/"
+startup_command = "nvim +'lua Snacks.picker.smart({ filter = { cwd = true } })'"
+preview_command = "eza --tree --level=3 --all --git --icons --color=always {}"
+
+[[session]]
+name = "adaengine"
+path = "~/workspace/ada-engine"
+startup_command = "nvim +'lua Snacks.picker.smart({ filter = { cwd = true } })'"
+preview_command = "eza --tree --level=3 --git --icons --color=always {}"
+
+[[session]]
+name = "adactl"
+path = "~/workspace/adactl"
+startup_command = "nvim +'lua Snacks.picker.smart({ filter = { cwd = true } })'"
+preview_command = "eza --tree --level=3 --all --git --icons --color=always {}"
