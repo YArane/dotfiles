@@ -64,3 +64,7 @@ if command -v carapace &> /dev/null; then
   zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
   source <(carapace _carapace)
 fi
+
+export TERM=xterm-256color
+
+bindkey "^[[1~" beginning-of-line

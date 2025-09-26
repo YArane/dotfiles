@@ -1,0 +1,36 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+dimensions = { columns = 160, lines = 48 }
+
+[general]
+#import = ["/Users/yarden/.config/alacritty/themes/gruvbox_dark.toml"]
+
+[scrolling]
+history = 100000
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+bindings = [{ mouse = "Right", action = "Paste" }]
+
+[font]
+normal = { family = "FiraCode Nerd Font", style = "Regular" }
+bold = { family = "FiraCode Nerd Font", style = "Bold" }
+italic = { family = "FiraCode Nerd Font", style = "Italic" }
+size = 14.0
+
+[keyboard]
+bindings = [
+  { key = "Left", mods = "Control", chars = "\u001b[H" }, # Ctrl+Left -> Home
+  { key = "Right", mods = "Control", chars = "\u0005" },  # Ctrl+Right -> End
+  { key = "Left", mods = "Alt", chars = "\u001b[1;5D" },  # Alt+Left -> Ctrl+Left (word back)
+  { key = "Right", mods = "Alt", chars = "\u001b[1;5C" }, # Alt+Right -> Ctrl+Right (word forward)
+  { key = "End", chars = "\u0005" },                      # End-> End
+  #{ key = "Home", chars = "\u001b[H" },                               # Home -> Home sequence
+  { key = "+", mods = "Control|Shift", action = "IncreaseFontSize" },
+  { key = "-", mods = "Control", action = "DecreaseFontSize" },
+  { key = "=", mods = "Control", action = "ResetFontSize" },
+]

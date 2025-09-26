@@ -36,6 +36,9 @@ local spotlight = remap.bind("ctrl", "space", "cmd", "space")
 -- 2. right click, open package contents
 -- 3. Info.plist
 -- 4. CFBundleIdentifier
+--  OR
+--print("~~~~~~~~~" .. hs.application.frontmostApplication():bundleID())
+
 --app.disable("com.googlecode.iterm2", { paste, copy, close_tab, select_all, new_tab, spotlight })
 --app.disable("com.jetbrains.intellij.ce", { paste, close_tab })
 app.disable("com.googlecode.iterm2", { paste, copy, select_all, new_tab, spotlight })
