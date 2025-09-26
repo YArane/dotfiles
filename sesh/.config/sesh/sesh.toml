@@ -23,6 +23,12 @@ startup_command = "nvim +'lua Snacks.picker.files({ dirs = { vim.fn.stdpath \"co
 preview_command = "eza --tree --level=3 --all --git --icons --color=always {}"
 
 [[session]]
+name = "alacritty"
+path = "~/workspace/dotfiles/alacritty"
+startup_command = "nvim ~/workspace/dotfiles/alacritty/alacritty.toml"
+preview_command = "bat --language=bash --style=snip --color=always ~/workspace/dotfiles/alacritty/alacritty.toml"
+
+[[session]]
 name = "dotfiles"
 path = "~/workspace/dotfiles"
 preview_command = "eza --tree --level=3 --all --git --icons --color=always {}"

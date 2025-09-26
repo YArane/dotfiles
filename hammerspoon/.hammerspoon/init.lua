@@ -1,10 +1,10 @@
 -- scroll with middle mouse click
-local mouse_scroll_wheel = require('mouse_scroll_wheel')
+local mouse_scroll_wheel = require("mouse_scroll_wheel")
 
 -- remap scroll lock to command
-local FRemap = require('foundation_remapping')
+local FRemap = require("foundation_remapping")
 local remapper = FRemap.new()
-remapper:remap('ScrollLock', 'lcmd')
+remapper:remap("ScrollLock", "lcmd")
 remapper:register()
 
 -- other bindings
@@ -31,22 +31,29 @@ local history = remap.bind("ctrl", "h", "cmd", "y")
 local finder_delete = remap.bind(nil, "forwarddelete", "cmd", "delete")
 local spotlight = remap.bind("ctrl", "space", "cmd", "space")
 
+-- to find name
+-- 1. find application
+-- 2. right click, open package contents
+-- 3. Info.plist
+-- 4. CFBundleIdentifier
 --app.disable("com.googlecode.iterm2", { paste, copy, close_tab, select_all, new_tab, spotlight })
 --app.disable("com.jetbrains.intellij.ce", { paste, close_tab })
 app.disable("com.googlecode.iterm2", { paste, copy, select_all, new_tab, spotlight })
+app.disable("org.alacritty", { paste, copy, select_all, new_tab, spotlight })
 app.disable("com.jetbrains.intellij.ce", { paste })
 app.disable("com.jetbrains.intellij", { paste })
 --app.disable("com.jetbrains.pycharm", {paste, close_tab})
 app.enable("com.googlecode.iterm2", { copy_shift, paste_shift })
+app.enable("org.alacritty", { copy_shift, paste_shift })
 app.enable("com.google.Chrome", { history })
 app.enable("com.apple.finder", { finder_delete })
 
 function moveWindowToDisplay(d)
-    return function()
-        local displays = hs.screen.allScreens()
-        local win = hs.window.focusedWindow()
-        win:moveToScreen(displays[d], false, true)
-    end
+	return function()
+		local displays = hs.screen.allScreens()
+		local win = hs.window.focusedWindow()
+		win:moveToScreen(displays[d], false, true)
+	end
 end
 
 hs.hotkey.bind({ "alt", "shift" }, "left", moveWindowToDisplay(1))

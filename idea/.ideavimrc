@@ -16,3 +16,5 @@ nnoremap gV `[v`]
 
 set visualbell
 set noerrorbells
+
+set clipboard+=unnamed " yank to system clipboard
