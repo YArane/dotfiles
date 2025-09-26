@@ -11,6 +11,9 @@ return {
 	{ import = "astrocommunity.pack.markdown" },
 	{ import = "astrocommunity.pack.yaml" },
 
+	--{ import = "astrocommunity.note-taking.obsidian-nvim" },
+	{ import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
+
 	{ import = "astrocommunity.pack.docker" },
 	{ import = "astrocommunity.pack.helm" },
 

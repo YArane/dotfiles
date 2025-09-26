@@ -1,7 +1,6 @@
 return {
 	"AstroNvim/astrocore",
 	opts = {
-		conceallevel = 2,
 		mappings = {
 			n = {
 				-- diable default bindings
@@ -29,19 +28,32 @@ return {
 					desc = "Previous buffer",
 				},
 
-				-- quick buffer switching
+				-- obsidian link nav
 				["<Tab>"] = {
 					function()
-						if #vim.t.bufs > 1 then
-							require("snacks.picker").buffers()
-						end
+						require("obsidian.api").nav_link("next")
 					end,
-					desc = "Switch Buffers",
+				},
+				["<S-Tab>"] = {
+					function()
+						require("obsidian.api").nav_link("prev")
+					end,
 				},
 
 				-- vimwiki
-				["<leader>w"] = { false, desc = "󰏫 Vimwiki" },
-				["<leader>ww"] = { "<cmd>VimwikiIndex<cr>", desc = "VimWiki Index" },
+				--["<leader>w"] = { false, desc = "󰏫 Vimwiki" },
+				--["<leader>ww"] = { "<cmd>VimwikiIndex<cr>", desc = "VimWiki Index" },
+				--
+				-- obsidian
+				["<leader>w"] = { false, desc = "󰏫 wiki" },
+				["<leader>ww"] = {
+					"<cmd>e ~/vimwiki/index.md<cr>",
+					desc = "Wiki Index",
+				},
+				["<leader>wi"] = {
+					"<cmd>e /Users/yarden/Library/Mobile Documents/iCloud~md~obsidian/Documents/InfraRED/index.md<cr>",
+					desc = "InfraRED Index",
+				},
 
 				["<BS>"] = { "<C-o>", desc = "Go back in jumplist" },
 
