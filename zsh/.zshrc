@@ -1,6 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+export TERM=xterm-256color
+
+bindkey "^[[1~" beginning-of-line # work around since alacritty maps home to ctrl-A which is tmux prefix
+
 # theme
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="pygmalion"
@@ -58,13 +62,9 @@ if [ "$TMUX" = "" ]; then tmux; fi # launch tmux on startup
 export FZF_DEFAULT_OPTS='--height=40% --layout=reverse --border --margin=0 --padding=0 --color=bg+:#293739,bg:#1B1D1E,border:#808080,spinner:#E6DB74,hl:#7E8E91,fg:#F8F8F2,header:#7E8E91,info:#A6E22E,pointer:#A6E22E,marker:#F92672,fg+:#F8F8F2,prompt:#F92672,hl+:#F92672'
 
 # carapace completions
-if command -v carapace &> /dev/null; then
+if command -v carapace &>/dev/null; then
   export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
   zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
   zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
   source <(carapace _carapace)
 fi
-
-export TERM=xterm-256color
-
-bindkey "^[[1~" beginning-of-line
